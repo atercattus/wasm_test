@@ -3,15 +3,34 @@
 <head>
     <meta charset="utf-8">
     <title>Golang WASM test</title>
+    <style>
+        html, body, #canvas {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+        }
+
+        #canvas {
+            position: fixed;
+            opacity: 1.0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
+<canvas id="canvas">Canvas</canvas>
 <script src="wasm.js"></script>
 <script>
   const go = new Go();
   WebAssembly.instantiateStreaming(fetch("build.wasm"), go.importObject).then(function(obj) {
     go.run(obj.instance);
   });
-
 </script>
 </body>
 </html>
